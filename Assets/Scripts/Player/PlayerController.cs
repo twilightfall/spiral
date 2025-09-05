@@ -88,27 +88,9 @@ public class PlayerController : MonoBehaviour
 
     void UpdateMove()
     {
-        if (isControllerConnected == false)
-        {
-            Vector3 movement = transform.right * InputManager.instance.movementVector.x + transform.forward * InputManager.instance.movementVector.y;
+        Vector3 movement = transform.right * InputManager.instance.movementVector.x + transform.forward * InputManager.instance.movementVector.y;
 
-            controller.Move(5f * Time.deltaTime * movement);
-
-            //horizontal = Input.GetAxis("Horizontal") * 30f * Time.deltaTime;
-            //vertical = Input.GetAxis("Vertical") * 30f * Time.deltaTime;
-
-            //Vector3 movement = transform.right * horizontal + transform.forward * vertical;
-
-            //controller.Move(movement * 15f * Time.deltaTime);
-        }
-        else
-        {
-            //Vector2 moveVector = gamepad.leftStick.ReadValue();
-
-            Vector3 movement = transform.right * InputManager.instance.movementVector.x + transform.forward * InputManager.instance.movementVector.y;
-
-            controller.Move(5f * Time.deltaTime * movement);
-        }
+        controller.Move(3f * Time.deltaTime * movement.normalized);
     }
 
     void GravityCheck()

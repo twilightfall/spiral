@@ -29,11 +29,12 @@ public class InputManager : MonoBehaviour
     {
         _ = gamepad == null ? isControllerConnected = false : isControllerConnected = true;
 
-        if (isControllerConnected)
+        if (isControllerConnected && playerInput.currentControlScheme != "Gamepad")
         {
+            print("Controller connected");
             playerInput.SwitchCurrentControlScheme("Gamepad");
         }
-        else
+        else if (!isControllerConnected && playerInput.currentControlScheme != "Keyboard&Mouse")
         {
             playerInput.SwitchCurrentControlScheme("Keyboard&Mouse");
         }
@@ -41,15 +42,7 @@ public class InputManager : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
-        if (isControllerConnected)
-        {
-            movementVector = gamepad.leftStick.ReadValue();
-        }
-        else
-        {
-            movementVector = value.Get<Vector2>();
-        }
-            
-        
+        print(value.Get<Vector2>());
+        movementVector = value.Get<Vector2>();
     }
 }
